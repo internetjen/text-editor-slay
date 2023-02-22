@@ -33,16 +33,6 @@ warmStrategyCache({
   strategy: pageCache,
 });
 
-// Use offlineFallback recipe to show fallback page when offline
-offlineFallback({
-  // Fallback to this HTML page when a URL is not in the cache and the user is offline
-  pageFallback: '/offline.html',
-  // Fallback to this image when a request for an image fails and the user is offline
-  imageFallback: 'client/src/images/offline.png',
-  // Use the CacheFirst strategy for the fallback page
-  pageLoadFallbackStrategy: pageCache,
-});
-
 
 // Set up asset cache
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);

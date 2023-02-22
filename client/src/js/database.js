@@ -18,8 +18,6 @@ const initdb = async () =>
 
 // Export a function we will use to PUT to the database.
 export const putDb = async (content) => {
-  console.log('Post to the database');
-
   // Create a connection to the database database and version we want to use.
   const jateDb = await openDB('jate', 1);
 
@@ -29,8 +27,8 @@ export const putDb = async (content) => {
   // Open up the desired object store.
   const store = tx.objectStore('jate');
 
-  // Use the .add() method on the store and pass in the content.
-  const request = store.add(content);
+  // Use the .put() method on the store and pass in the content.
+  const request = store.put({id:1, content: content});
 
   // Get confirmation of the request.
   const result = await request;
@@ -39,8 +37,6 @@ export const putDb = async (content) => {
 
 // Export a function we will use to GET to the database.
 export const getDb = async () => {
-  console.log('GET from the database');
-
   // Create a connection to the database database and version we want to use.
   const jateDb = await openDB('jate', 1);
 
@@ -55,7 +51,7 @@ export const getDb = async () => {
 
   // Get confirmation of the request.
   const result = await request;
-  console.log('result.value', result);
+  console.log(result);
   return result;
 }
 
